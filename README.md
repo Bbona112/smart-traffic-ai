@@ -1,73 +1,98 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# 🚦 Smart Traffic Management with Reinforcement Learning
 
-## React Compiler
+This project implements a Smart Traffic Management System using **Reinforcement Learning (RL)**. It focuses on optimizing traffic signal control at urban intersections by reducing vehicle delays, improving throughput, and prioritizing pedestrian and emergency flows.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The system uses **synthetic traffic data** modeled after a 4-lane roundabout in Nairobi’s CBD. Two RL models (**DQN** and **PPO**) are trained and evaluated against baseline fixed-timing control strategies.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📌 Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* AI-based traffic light control using **Deep Q-Network (DQN)** and **Proximal Policy Optimization (PPO)**.
+* Synthetic dataset of vehicle inflows and pedestrian crossings for simulation.
+* Inference and logging to **CSV/Excel** with model actions, rewards, and traffic states.
+* Web dashboard (React + Flask API) for visualization and monitoring.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+
+## ⚙️ Setup & Installation
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/yourusername/smart-traffic-rl.git
+cd smart-traffic-rl
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install Dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pip install -r requirements.txt
 ```
+
+Typical dependencies include:
+
+* `numpy`, `pandas`
+* `matplotlib`, `seaborn`
+* `stable-baselines3`, `gym`
+* `flask`, `flask-cors`
+* `openpyxl` (for Excel I/O)
+
+### 3. Run Training
+
+```bash
+python train_models.py
+```
+
+### 4. Run Inference & Export Logs
+
+```bash
+python run_inference.py
+```
+
+This generates a CSV log of model decisions, rewards, and state variables.
+
+### 5. Launch Dashboard
+
+```bash
+cd dashboard
+npm install
+npm start
+```
+
+Dashboard will run at `http://localhost:3000/`.
+
+---
+
+## 📊 Dataset
+
+* **Synthetic traffic dataset** based on Nairobi CBD roundabout.
+* Includes: vehicle inflows (per lane), pedestrian crossing requests, signal phases, queue lengths, and delays.
+* 1-hour simulation (~1000 vehicles).
+
+---
+
+## 🚀 Future Work
+
+* Integrate **real-world traffic datasets** (e.g., Nairobi KURA or OpenTraffic).
+* Scale up to multiple intersections with **multi-agent reinforcement learning**.
+* Add emergency vehicle prioritization and adaptive pedestrian crossing signals.
+* Deploy prototype dashboard for city-level traffic monitoring.
+
+---
+
+## 📖 References
+
+* Behrisch, M., et al. (2011). *SUMO—Simulation of Urban MObility: An overview*.
+* Mnih, V., et al. (2015). *Human-level control through deep reinforcement learning*.
+* Schulman, J., et al. (2017). *Proximal Policy Optimization Algorithms*.
+* Li, Y., et al. (2020). *CoLight: Learning network-level cooperation for traffic signal control*.
+
+---
+
+

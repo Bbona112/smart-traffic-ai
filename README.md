@@ -25,7 +25,7 @@ The system uses **synthetic traffic data** modeled after a 4-lane roundabout in 
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/smart-traffic-rl.git
+git clone https://github.com/Bbona112/smart-traffic-ai.git
 cd smart-traffic-rl
 ```
 
